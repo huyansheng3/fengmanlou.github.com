@@ -19,19 +19,48 @@
     </section>
 
     <section class="main-content">
-      <p>　---
-　　layout: default
-　　title: 我的Blog
-　　---
-　　</p><h2>
-<a id="-pagetitle-" class="anchor" href="#-pagetitle-" aria-hidden="true"><span class="octicon octicon-link"></span></a>{{ page.title }}</h2>
-　　<p>最新文章</p>
-　　<ul>
-　　　　{% for post in site.posts %}
-　　　　　　<li>{{ post.date | date_to_string }} <a href="%7B%7B%20site.baseurl%20%7D%7D%7B%7B%20post.url%20%7D%7D">{{ post.title }}</a>
-</li>
-　　　　{% endfor %}
-　　</ul>
+      <hr>
+
+<p>layout: default</p>
+
+<h2>
+<a id="title-home" class="anchor" href="#title-home" aria-hidden="true"><span class="octicon octicon-link"></span></a>title: Home</h2>
+
+<div>
+
+  <ul>
+    {% for post in paginator.posts %}
+    <li>
+      <h1>
+<a id="-posttitle-" class="anchor" href="#-posttitle-" aria-hidden="true"><span class="octicon octicon-link"></span></a>{{ post.title }}</h1>
+      {{ post.date | date: "%b %-d, %Y" }}
+      {{ post.excerpt }}
+      <div>
+        •••
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div>
+    {% if paginator.previous_page %}
+      {% if page == 2 %}
+        <a href="%7B%7B%20'/index.html'%20%7C%20prepend:%20site.baseurl%20%7C%20replace:%20'//',%20'/'%20%7C%20replace:%20':num',%20page%20%7D%7D">prv</a>
+      {% else %}
+        prv
+      {% endif %}
+    {% else %}
+      prv
+    {% endif %}
+
+    {% if paginator.next_page %}
+      nxt
+    {% else %}
+      nxt
+    {% endif %}
+  </div>
+
+</div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/huyansheng3/fengmanlou.github.com">Fengmanlou.GitHub.com</a> is maintained by <a href="https://github.com/huyansheng3">huyansheng3</a>.</span>
